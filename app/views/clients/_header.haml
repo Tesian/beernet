@@ -1,0 +1,18 @@
+%header#overview.jumbotron.subhead
+  .row
+    .span6
+      %h1 Client
+      %p.lead Clients d'Awea.
+  .subnav
+    %ul.nav.nav-pills
+      %li
+        %a{:href => "#{clients_path}"} Liste
+      %li
+        %a{:href => "#{new_client_path}"} New
+      - if @client != nil && @client.new_record? != true
+        - if request.url.last != 't'
+          %li
+            %a{:href => "#{edit_client_path(@client)}"} Edit
+        - else
+          %li
+            %a{:href => "#{@client}"} Show
