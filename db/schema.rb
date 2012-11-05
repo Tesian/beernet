@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121031154256) do
+ActiveRecord::Schema.define(:version => 20121105211612) do
 
   create_table "access", :force => true do |t|
     t.string "login"
@@ -49,6 +49,19 @@ ActiveRecord::Schema.define(:version => 20121031154256) do
 
   add_index "contacts", ["client_id"], :name => "index_contacts_on_client_id"
 
+  create_table "projects", :force => true do |t|
+    t.string "name"
+    t.text   "description"
+  end
+
+  create_table "projects_users", :force => true do |t|
+    t.integer "user_id"
+    t.integer "project_id"
+  end
+
+  add_index "projects_users", ["project_id"], :name => "index_projects_users_on_project_id"
+  add_index "projects_users", ["user_id"], :name => "index_projects_users_on_user_id"
+
   create_table "type_accesses", :force => true do |t|
     t.string  "name"
     t.integer "access_id"
@@ -57,18 +70,22 @@ ActiveRecord::Schema.define(:version => 20121031154256) do
   add_index "type_accesses", ["access_id"], :name => "index_type_accesses_on_access_id"
 
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "email",                    :default => "", :null => false
+    t.string   "encrypted_password",       :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
+    t.integer  "sign_in_count",            :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+    t.string   "username_google_calendar"
+    t.string   "password_google_calendar"
+    t.string   "username_github"
+    t.string   "password_github"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
