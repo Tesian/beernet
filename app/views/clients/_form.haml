@@ -1,4 +1,4 @@
-= form_for(@client) do |f|
+= form_for(setup_client(@client)) do |f|
   - if @client.errors.any?
     #error_explanation
       %h2
@@ -11,6 +11,27 @@
     = f.label :name
     %br/
     = f.text_field :name
+  = f.fields_for :contacts do |ff|
+    .field
+      = ff.label :firstname
+      %br/
+      = ff.text_field :firstname
+    .field
+      = ff.label :lastname
+      %br/
+      = ff.text_field :lastname
+    .field
+      = ff.label :email
+      %br/
+      = ff.text_field :email
+    .field
+      = ff.label :phone
+      %br/
+      = ff.text_field :phone
+    .field
+      = ff.label "Commentaire contact:"
+      %br/
+      = ff.text_area :other_data
   .field
     = f.label :street
     %br/
