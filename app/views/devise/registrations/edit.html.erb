@@ -6,6 +6,18 @@
   <div><%= f.label :email %><br />
   <%= f.email_field :email %></div>
 
+  <div><%= f.label :username_google_calendar %><br />
+    <%= f.text_field :username_google_calendar %></div>
+
+  <div><%= f.label :password_google_calendar %><br />
+    <%= f.text_field :password_google_calendar %></div>
+
+  <div><%= f.label :username_github %><br />
+    <%= f.text_field :username_github %></div>
+
+  <div><%= f.label :password_github %><br />
+    <%= f.text_field :password_github %></div>
+
   <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
   <%= f.password_field :password, :autocomplete => "off" %></div>
 

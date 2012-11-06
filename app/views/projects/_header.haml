@@ -1,0 +1,18 @@
+%header#overview.jumbotron.subhead
+  .row
+    .span6
+      %h1 Project
+      %p.lead Projects d'Awea.
+  .subnav
+    %ul.nav.nav-pills
+      %li
+        %a{:href => "#{projects_path}"} Liste
+      %li
+        %a{:href => "#{new_project_path}"} New
+      - if @project != nil && @project.new_record? != true
+        - if request.url.last != 't'
+          %li
+            %a{:href => "#{edit_project_path(@project)}"} Edit
+        - else
+          %li
+            %a{:href => "#{@project}"} Show

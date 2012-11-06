@@ -3,7 +3,7 @@ Beernet::Application.routes.draw do
 
   resources :clients
 
-  resources :contacts
+  resources :projects
 
   resources :accesses
 
