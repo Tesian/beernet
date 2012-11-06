@@ -13,9 +13,10 @@ include Coast
   after :create do
     service = GCal4Ruby::Service.new
     service.authenticate(current_user.username_google_calendar, current_user.password_google_calendar)
-    if ((cal = GCal4Ruby::Calendar.find(service, {:title => @project.name})) == nil)
+    if ((cal = GCal4Ruby::Calendar.find(service, {:title => @project.name})).length == 0)
       cal = GCal4Ruby::Calendar.new(service, {:title => @project.name})
     end
+      e = GCal4Ruby::Event.new(service, {:calendar => cal, :title => @project.name, :start_time => Time.parse("12-06-2012 at 12:30 PM"), :end_time => Time.parse("12-06-2012 at 1:30 PM"), :where => "Nowhere"})
   end
 
 end
