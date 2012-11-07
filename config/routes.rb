@@ -3,7 +3,12 @@ Beernet::Application.routes.draw do
 
   resources :clients
 
-  resources :projects
+  resources :projects do
+    member do 
+      get 'google_calendar'
+      get 'google_calendar_events'
+    end
+  end
 
   resources :accesses
 

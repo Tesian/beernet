@@ -3,13 +3,24 @@ include Coast
 
   before_filter :authenticate_user!
 
-  def co_google_calendar()
+  def google_calendar
+    render
+  end
+
+  def google_calendar_events
+    @project = Project.find(params[:id])
     service = GCal4Ruby::Service.new
     service.authenticate(current_user.username_google_calendar, current_user.password_google_calendar)
     if ((cal = GCal4Ruby::Calendar.find(service, {:title => @project.name})).length == 0)
       cal = GCal4Ruby::Calendar.new(service, {:title => @project.name})
       cal.save
     end
+    if cal.length == 1
+      @events = cal.first.events
+    else
+      @events = cal.events
+    end
+    render "google_calendar_events", :layout => false
   end
 
   before :index do
