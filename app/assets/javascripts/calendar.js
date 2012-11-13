@@ -5,6 +5,8 @@ $(document).ready(function() {
 	var m = date.getMonth();
 	var y = date.getFullYear();
 	
+        tmp = document.URL.split("/");
+        id_project = tmp[4]
 	$('#calendar').fullCalendar({
 		editable: true,        
 		header: {
@@ -25,7 +27,7 @@ $(document).ready(function() {
         
         // a future calendar might have many sources.        
         eventSources: [{
-            url: '/events',
+            url: '/projects/' + id_project + '/events',
             color: 'yellow',
             textColor: 'black',
             ignoreTimezone: false
