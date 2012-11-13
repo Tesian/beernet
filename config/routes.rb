@@ -5,8 +5,8 @@ Beernet::Application.routes.draw do
 
   resources :projects do
     member do 
-      get 'google_calendar'
-      get 'google_calendar_events'
+      resources :events
+      get 'calendar'
     end
   end
 

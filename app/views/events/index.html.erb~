@@ -1,0 +1,32 @@
+<h1>Listing events</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Starts at</th>
+    <th>Ends at</th>
+    <th>All day</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @events.each do |event| %>
+  <tr>
+    <td><%= event.title %></td>
+    <td><%= event.start_time %></td>
+    <td><%= event.end_time %></td>
+    <td><%= event.all_day %></td>
+    <td><%= event.description %></td>
+    <td><%= link_to 'Show', [@project, event] %></td>
+    <td><%= link_to 'Edit', events_path(@project) %></td>
+    <td><%= link_to 'Destroy', events_path(@project), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<%= link_to 'View Calendar', calendar_project_path(@project) %>
+<br />
+<%= link_to 'New Event', new_event_path %>
