@@ -19,9 +19,9 @@
     <td><%= event.end_time %></td>
     <td><%= event.all_day %></td>
     <td><%= event.description %></td>
-    <td><%= link_to 'Show', events_path(@project) %></td>
-    <td><%= link_to 'Edit', events_path(@project) %></td>
-    <td><%= link_to 'Destroy', events_path(@project), :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Show', project_event_path(@project, event.id) %></td>
+    <td><%= link_to 'Edit', edit_project_event_path(@project, event.id) %></td>
+    <td><%= link_to 'Destroy', project_event_path(@project, event.id), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
@@ -29,4 +29,4 @@
 <br />
 <%= link_to 'View Calendar', calendar_project_path(@project) %>
 <br />
-<%= link_to 'New Event', new_event_path %>
+<%= link_to 'New Event', new_project_event_path(@project) %>

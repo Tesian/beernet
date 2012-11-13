@@ -7,12 +7,12 @@
 
 <p>
   <b>Starts at:</b>
-  <%= @event.starts_at %>
+  <%= @event.start_time %>
 </p>
 
 <p>
   <b>Ends at:</b>
-  <%= @event.ends_at %>
+  <%= @event.end_time %>
 </p>
 
 <p>
@@ -21,10 +21,15 @@
 </p>
 
 <p>
+  <b>Where:</b>
+  <%= @event.where %>
+</p>
+
+<p>
   <b>Description:</b>
   <%= @event.description %>
 </p>
 
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<%= link_to 'Edit', edit_project_event_path(@project, @event.id) %> |
+<%= link_to 'Back', project_events_path(@project) %>

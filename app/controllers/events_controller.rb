@@ -4,16 +4,19 @@ class EventsController < ApplicationController
 
   def get_many_google_events(google_events)
     events = []
+    i = 0
     google_events.each do |google_event|
       event = Event.new
       event.get_google_event(google_event)
+      event.id = i
       events.push(event)
+      i = i + 1
     end
     return events
   end
 
-  def connect_calendar()
-    @project = Project.find(params[:id])
+  def connect_calendar
+    @project = Project.find(params[:project_id])
     @service = GCal4Ruby::Service.new
     @service.authenticate(current_user.username_google_calendar, current_user.password_google_calendar)
     if ((@cal = GCal4Ruby::Calendar.find(@service, {:title => @project.name})).length == 0)
@@ -37,9 +40,12 @@ class EventsController < ApplicationController
   end
 
   def show
-    event = GCal4Ruby::Event.find(@service, {:id => params[:id]})
+    events = @cal.events
+    event = events[params[:id].to_i]
 
-    @event = Event.new.get_google_event(event)
+    @event = Event.new
+    @event.get_google_event(event)
+    @event.id = params[:id].to_i
 
     respond_to do |format|
       format.html
@@ -59,7 +65,12 @@ class EventsController < ApplicationController
   end
 
   def edit
-    @event = GCal4Ruby::Event.find(@service, {:id => params[:id]})
+    events = @cal.events
+    event = events[params[:id].to_i]
+
+    @event = Event.new
+    @event.get_google_event(event)
+    @event.id = params[:id].to_i
 
     respond_to do |format|
       format.html
