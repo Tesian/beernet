@@ -1,8 +1,8 @@
 class Event
-
   extend ActiveModel::Naming
   include ActiveModel::AttributeMethods
   include ActiveModel::Conversion
+
 
   def as_json(options = {})
     {
@@ -13,7 +13,7 @@ class Event
       :end => self.end_time,
       :allDay => self.all_day,
       :recurring => false,
-      :url => Rails.application.routes.url_helpers.event_path(id)
+      :url => "events/" + self.id.to_s
     }
   end
 

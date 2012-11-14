@@ -7,6 +7,7 @@
     <th>Ends at</th>
     <th>All day</th>
     <th>Description</th>
+    <th>Where</th>
     <th></th>
     <th></th>
     <th></th>
@@ -19,6 +20,7 @@
     <td><%= event.end_time %></td>
     <td><%= event.all_day %></td>
     <td><%= event.description %></td>
+    <td><%= event.where %></td>
     <td><%= link_to 'Show', project_event_path(@project, event.id) %></td>
     <td><%= link_to 'Edit', edit_project_event_path(@project, event.id) %></td>
     <td><%= link_to 'Destroy', project_event_path(@project, event.id), :confirm => 'Are you sure?', :method => :delete %></td>

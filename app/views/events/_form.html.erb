@@ -4,14 +4,8 @@
     <%= f.label :title %><br />
     <%= f.text_field :title %>
   </div>
-  <div class="field">
-    <%= f.label :start_time %><br />
-    <%= f.datetime_select :start_time %>
-  </div>
-  <div class="field">
-    <%= f.label :end_time %><br />
-    <%= f.datetime_select :end_time %>
-  </div>
+  <%= render 'datetime_select', :locals => {f: f, time: "start_time"} %>
+  <%= render 'datetime_select', :locals => {f: f, time: "end_time"} %>
   <div class="field">
     <%= f.label :all_day %><br />
     <%= f.check_box :all_day %>
