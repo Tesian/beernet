@@ -2,15 +2,24 @@ class EventsController < ApplicationController
 
   before_filter :authenticate_user!, :connect_calendar
 
-  def get_many_google_events(google_events)
+  def get_many_google_events(google_events, end_time = nil, start_time = nil)
     events = []
     i = 0
     google_events.each do |google_event|
       event = Event.new
       event.get_google_event(google_event)
       event.id = i
-      events.push(event)
-      i = i + 1
+      if end_time && start_time
+        if event.title != "deleted" && event.start_time > start_time && event.end_time < end_time          
+          events.push(event)
+          i = i + 1
+        end
+      else
+        if event.title != "deleted" && event.start_time > Time.now - 25920000
+          events.push(event)
+          i = i + 1
+        end
+      end
     end
     return events
   end
@@ -30,8 +39,12 @@ class EventsController < ApplicationController
 
   def index
     events  = @cal.events
+    if params[:start] && params[:end]
+      start_time  = Time.at(params[:start].to_i)
+      end_time    = Time.at(params[:end].to_i)
+    end
 
-    @events = get_many_google_events(events)
+    @events = get_many_google_events(events, end_time, start_time)
     respond_to do |format|
       format.html
       format.xml        { render :xml => @events }
