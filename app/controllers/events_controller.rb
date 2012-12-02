@@ -108,14 +108,15 @@ class EventsController < ApplicationController
   end
 
   def create
+    event      = params[:event]
 
-    start_time = Time.new(params[:event][:start_time][:year], params[:event][:start_time][:month], params[:event][:start_time][:day], params[:event][:start_time][:hours], params[:event][:start_time][:mins])
-    end_time   = Time.new(params[:event][:end_time][:year], params[:event][:end_time][:month], params[:event][:end_time][:day], params[:event][:end_time][:hours], params[:event][:end_time][:mins])
+    start_time = Time.new(event[:start_time][:year], event[:start_time][:month], event[:start_time][:day], event[:start_time][:hours], event[:start_time][:mins])
+    end_time   = Time.new(event[:end_time][:year], event[:end_time][:month], event[:end_time][:day], event[:end_time][:hours], event[:end_time][:mins])
 
-    event      = GCal4Ruby::Event.new(@service, {calendar: @cal, title: params[:event][:title], start_time: start_time, :end_time => end_time, where: params[:event][:where], content: params[:event][:description]})
+    new_event  = GCal4Ruby::Event.new(@service, {calendar: @cal, title: event[:title], start_time: start_time, :end_time => end_time, where: event[:where], content: event[:description]})
 
     respond_to do |format|
-      if event.save
+      if new_event.save
         format.html {redirect_to project_events_url(@project) }
       else
         format.html { render :action => "new" }
@@ -124,17 +125,18 @@ class EventsController < ApplicationController
   end
 
   def update
-    events           = @cal.events
-    event            = events[params[:id].to_i]
+    events                  = @cal.events
+    event_update            = events[params[:id].to_i]
+    event                   = params[:event]
 
-    event.start_time = Time.new(params[:event][:start_time][:year], params[:event][:start_time][:month], params[:event][:start_time][:day], params[:event][:start_time][:hours], params[:event][:start_time][:mins])
-    event.end_time   = Time.new(params[:event][:end_time][:year], params[:event][:end_time][:month], params[:event][:end_time][:day], params[:event][:end_time][:hours], params[:event][:end_time][:mins])
-    event.title      = params[:event][:title]
-    event.where      = params[:event][:where]
-    event.content    = params[:event][:description]
+    event_update.start_time = Time.new(event[:start_time][:year], event[:start_time][:month], event[:start_time][:day], event[:start_time][:hours], event[:start_time][:mins])
+    event_update.end_time   = Time.new(event[:end_time][:year], event[:end_time][:month], event[:end_time][:day], event[:end_time][:hours], event[:end_time][:mins])
+    event_update.title      = event[:title]
+    event_update.where      = event[:where]
+    event_update.content    = event[:description]
 
     respond_to do |format|
-      if event.save
+      if event_update.save
         format.html { redirect_to(project_event_path(@project, params[:id]), :notice => 'Event was successfully updated.') }
         format.xml  { head :ok }
         format.js { head :ok}
@@ -148,12 +150,12 @@ class EventsController < ApplicationController
     events           = @cal.events
     event            = events[params[:id].to_i]
 
-    event.title      = "DELETED"
-    event.content    = "DELETED"
-    event.where      = "DELETED"
-    event.start_time = Time.parse("2005-01-01 00:00")
-    event.end_time   = Time.parse("2005-01-01 00:00")
-    event.save
+    event_update.title      = "DELETED"
+    event_update.content    = ""
+    event_update.where      = ""
+    event_update.start_time = Time.parse("2005-01-01 00:00")
+    event_update.end_time   = Time.parse("2005-01-01 00:00")
+    event_update.save
 
     respond_to do |format|
       format.html { redirect_to project_events_url(@project) }
