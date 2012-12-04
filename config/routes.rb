@@ -4,6 +4,7 @@ Beernet::Application.routes.draw do
   resources :clients
 
   resources :projects do
+    resources :issues
     resources :events
     member do 
       get 'calendar'

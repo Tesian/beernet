@@ -10,6 +10,12 @@ gem 'sqlite3'
 # link google calendar gem
 gem 'gcal4ruby'
 
+# link github gem
+gem "github_api"
+
+#
+gem 'awesome_print'
+
 # User system
 gem 'devise'
 

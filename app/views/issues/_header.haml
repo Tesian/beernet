@@ -1,0 +1,19 @@
+%header#overview.jumbotron.subhead
+  .row
+    .span6
+      %h1 Issues
+      %p.lead Issues du projet (lié avec github)
+  .subnav
+    %ul.nav.nav-pills
+      %li
+        %a{:href => project_issues_path(@project), :class => 'btn btn-primary'} Liste
+      %li
+        %a{:href => new_project_issue_path(@project), :class => 'btn btn-primary'} New
+      - if @issue != nil && request.url.last != 'w'
+        - if request.url.last != 't'
+          %li
+            %a{:href => edit_project_issue_path(@project, @issue.id), :class => 'btn btn-primary'} Edit
+        - else
+          %li
+            %a{:href => project_issue_path(@project, @issue.id), :class => 'btn btn-primary'} Show
+
