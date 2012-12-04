@@ -6,13 +6,13 @@
   .subnav
     %ul.nav.nav-pills
       %li
-        %a{:href => "#{projects_path}"} Liste
+        %a{:href => "#{projects_path}", :class => "btn btn-primary"} Liste
       %li
-        %a{:href => "#{new_project_path}"} New
+        %a{:href => "#{new_project_path}", :class => "btn btn-primary"} New
       - if @project != nil && @project.new_record? != true
         - if request.url.last != 't'
           %li
-            %a{:href => "#{edit_project_path(@project)}"} Edit
+            %a{:href => "#{edit_project_path(@project)}", :class => "btn btn-primary"} Edit
         - else
           %li
-            %a{:href => "#{@project}"} Show
+            %a{:href => project_path(@project), :class => "btn btn-primary"} Show

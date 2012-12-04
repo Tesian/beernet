@@ -1,10 +1,12 @@
 = render 'header'
+
 %p#notice= notice
-%p
-  %b Name:
-  = @project.name
-%p
-  %b Description:
-  = @project.description
+
+%dl{ :class => "dl-horizontal" }
+  %dt  Name:
+  %dd= @project.name
+
+  %dt Description:
+  %dd= @project.description
 
 = link_to "Events of this project", project_events_path(@project)

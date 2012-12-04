@@ -1,4 +1,4 @@
-= form_for(setup_client(@client)) do |f|
+= form_for setup_client(@client), :html => { :class => 'form-horizontal' } do |f|
   - if @client.errors.any?
     #error_explanation
       %h2
@@ -7,42 +7,42 @@
       %ul
         - @client.errors.full_messages.each do |msg|
           %li= msg
-  .field
+  .control_group
     = f.label :name
-    %br/
-    = f.text_field :name
+    .controls
+      = f.text_field :name
   = f.fields_for :contacts do |ff|
-    .field
+    .control_group
       = ff.label :firstname
-      %br/
-      = ff.text_field :firstname
-    .field
+      .controls
+        = ff.text_field :firstname
+    .control_group
       = ff.label :lastname
-      %br/
-      = ff.text_field :lastname
-    .field
+      .controls
+        = ff.text_field :lastname
+    .control_group
       = ff.label :email
-      %br/
-      = ff.text_field :email
-    .field
+      .controls
+        = ff.text_field :email
+    .control_group
       = ff.label :phone
-      %br/
-      = ff.text_field :phone
-    .field
+      .controls
+        = ff.text_field :phone
+    .control_group
       = ff.label "Commentaire contact:"
-      %br/
-      = ff.text_area :other_data
-  .field
+      .controls
+        = ff.text_area :other_data
+  .control_group
     = f.label :street
-    %br/
-    = f.text_field :street
-  .field
+    .controls
+      = f.text_field :street
+  .control_group
     = f.label :zip
-    %br/
-    = f.text_field :zip
-  .field
+    .controls
+      = f.text_field :zip
+  .control_group
     = f.label :town
-    %br/
-    = f.text_field :town
-  .actions
-    = f.submit
+    .controls
+      = f.text_field :town
+  .form-actions
+    = f.submit nil, :class => "btn btn-primary"

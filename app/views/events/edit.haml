@@ -1,7 +1,6 @@
-%h1 Editing event
+= render "header"
+
+.page-header
+  %h1 Editing event
 
 = render 'form'
-
-= link_to 'Show', project_event_path(@project, @event.id)
- |
-= link_to 'Back', project_events_path(@project)

@@ -6,13 +6,13 @@
   .subnav
     %ul.nav.nav-pills
       %li
-        %a{:href => "#{accesses_path}"} Liste
+        %a{:href => "#{accesses_path}", :class => 'btn btn-primary'} Liste
       %li
-        %a{:href => "#{new_access_path}"} New
+        %a{:href => "#{new_access_path}", :class => 'btn btn-primary'} New
       - if @access != nil && @access.new_record? != true
         - if request.url.last != 't'
           %li
-            %a{:href => "#{edit_access_path(@access)}"} Edit
+            %a{:href => "#{edit_access_path(@access)}", :class => 'btn btn-primary'} Edit
         - else
           %li
-            %a{:href => "#{@access}"} Show
+            %a{:href => access_path(@access), :class => 'btn btn-primary'} Show

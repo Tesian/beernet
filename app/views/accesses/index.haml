@@ -1,20 +1,21 @@
 = render 'header'
-
-%h1 Listing accesses
-%table
-  %tr
-    %th Login
-    %th Password
-    %th Address
-    %th
-    %th
-    %th
-  - @accesses.each do |access|
+.page-header
+  %h1 Listing accesses
+%table{ :class => "table table-striped" }
+  %thead
     %tr
-      %td= access.login
-      %td= access.password
-      %td= access.address
-      %td= link_to 'Show', access
-      %td= link_to 'Edit', edit_access_path(access)
-      %td= link_to 'Destroy', access, method: :delete, data: { confirm: 'Are you sure?' }
-%br/
+      %th Login
+      %th Password
+      %th Address
+      %th
+      %th
+      %th
+  - @accesses.each do |access|
+    %tbody
+      %tr
+        %td= access.login
+        %td= access.password
+        %td= access.address
+        %td= link_to 'Show', access, :class => "btn btn-mini"
+        %td= link_to 'Edit', edit_access_path(access), :class => "btn btn-mini"
+        %td= link_to 'Destroy', access, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-mini btn-danger"

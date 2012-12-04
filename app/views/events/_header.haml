@@ -1,0 +1,19 @@
+%header#overview.jumbotron.subhead
+  .row
+    .span6
+      %h1 Events
+      %p.lead Évènements lié avec Google Calendar
+  .subnav
+    %ul.nav.nav-pills
+      %li
+        %a{:href => project_events_path(@project), :class => 'btn btn-primary'} Liste
+      %li
+        %a{:href => new_project_event_path(@project), :class => 'btn btn-primary'} New
+      - if @event != nil && request.url.last != 'w'
+        - if request.url.last != 't'
+          %li
+            %a{:href => edit_project_event_path(@project, @event.id), :class => 'btn btn-primary'} Edit
+        - else
+          %li
+            %a{:href => project_event_path(@project, @event.id), :class => 'btn btn-primary'} Show
+

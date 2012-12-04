@@ -1,20 +1,21 @@
 = render 'header'
-%h1 Listing projects
+.page-header
+  %h1 Listing projects
 %p
   = @calendar_title
-%table
-  %tr
-    %th Name
-    %th Description
-    %th
-    %th
-    %th
-  - @projects.each do |project|
+%table{ :class => "table table-striped" }
+  %thead
     %tr
-      %td= project.name
-      %td= project.description
-      %td= link_to 'Show', project
-      %td= link_to 'Edit', edit_project_path(project)
-      %td= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }
-%br/
-= link_to 'New Project', new_project_path
+      %th Name
+      %th Description
+      %th
+      %th
+      %th
+  - @projects.each do |project|
+    %tbody
+      %tr
+        %td= project.name
+        %td= project.description
+        %td= link_to 'Show', project, :class => "btn btn-mini"
+        %td= link_to 'Edit', edit_project_path(project), :class => "btn btn-mini"
+        %td= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-mini btn-danger"

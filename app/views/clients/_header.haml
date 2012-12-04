@@ -6,13 +6,13 @@
   .subnav
     %ul.nav.nav-pills
       %li
-        %a{:href => "#{clients_path}"} Liste
+        %a{:href => "#{clients_path}", :class => "btn btn-primary"} Liste
       %li
-        %a{:href => "#{new_client_path}"} New
+        %a{:href => "#{new_client_path}", :class => "btn btn-primary"} New
       - if @client != nil && @client.new_record? != true
         - if request.url.last != 't'
           %li
-            %a{:href => "#{edit_client_path(@client)}"} Edit
+            %a{:href => "#{edit_client_path(@client)}", :class => "btn btn-primary"} Edit
         - else
           %li
-            %a{:href => "#{@client}"} Show
+            %a{:href => client_path(@client), :class => "btn btn-primary"} Show

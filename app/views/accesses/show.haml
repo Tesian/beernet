@@ -2,14 +2,12 @@
 
 %p#notice= notice
 
-%p
-  %b Login:
-  = @access.login
+%dl{ :class => "dl-horizontal" }
+  %dt  Login:
+  %dd= @access.login
 
-%p
-  %b Password:
-  = @access.password
+  %dt  Password:
+  %dd= @access.password
 
-%p
-  %b Address:
-  = @access.address
+  %dt  Address:
+  %dd= @access.address

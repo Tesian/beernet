@@ -1,4 +1,4 @@
-= form_for(@project) do |f|
+= form_for @project, :html => { :class => 'form-horizontal' } do |f|
   - if @project.errors.any?
     #error_explanation
       %h2
@@ -7,13 +7,13 @@
       %ul
         - @project.errors.full_messages.each do |msg|
           %li= msg
-  .field
+  .control-group
     = f.label :name
-    %br/
-    = f.text_field :name
-  .field
+    .controls
+      = f.text_field :name
+  .control-group
     = f.label :description
-    %br/
-    = f.text_area :description
-  .actions
-    = f.submit
+    .controls
+      = f.text_area :description
+  .form-actions
+    = f.submit nil, :class => "btn btn-primary"

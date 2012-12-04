@@ -1,4 +1,4 @@
-= form_for(setup_access(@access)) do |f|
+= form_for setup_access(@access), :html => { :class => 'form-horizontal' } do |f|
   - if @access.errors.any?
     #error_explanation
       %h2
@@ -7,22 +7,22 @@
       %ul
         - @access.errors.full_messages.each do |msg|
           %li= msg
-  .field
-    = f.label "Type :"
-    %br/
-    = f.fields_for :type_access, @access.type_access do |ff|
-      = ff.text_field :name
-  .field
+  .control-group
+    = f.label "Type"
+    .controls
+      = f.fields_for :type_access, @access.type_access do |ff|
+        = ff.text_field :name
+  .control-group
     = f.label :login
-    %br/
-    = f.text_field :login
-  .field
+    .controls
+      = f.text_field :login
+  .control-group
     = f.label :password
-    %br/
-    = f.text_field :password
-  .field
+    .controls
+      = f.text_field :password
+  .control-group
     = f.label :address
-    %br/
-    = f.text_field :address
-  .actions
-    = f.submit
+    .controls
+      = f.text_field :address
+  .form-actions
+    = f.submit nil, :class => "btn btn-primary"

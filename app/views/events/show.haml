@@ -1,36 +1,22 @@
+= render 'header'
+
 %p#notice= notice
 
-%p
-  %b Title:
-  = @event.title 
+%dl{ :class => "dl-horizontal" }
+  %dt Title:
+  %dd= @event.title 
 
+  %dt Starts at:
+  %dd= @event.start_time 
 
-%p
-  %b Starts at:
-  = @event.start_time 
+  %dt Ends at:
+  %dd= @event.end_time 
 
+  %dt All day:
+  %dd= @event.all_day 
 
-%p
-  %b Ends at:
-  = @event.end_time 
+  %dt Where:
+  %dd= @event.where 
 
-
-%p
-  %b All day:
-  = @event.all_day 
-
-
-%p
-  %b Where:
-  = @event.where 
-
-
-%p
-  %b Description:
-  = @event.description 
-
-
-
-= link_to 'Edit', edit_project_event_path(@project, @event.id)
- | 
-= link_to 'Back', project_events_path(@project) 
+  %dt Description:
+  %dd= @event.description 
