@@ -19,7 +19,7 @@
       %td= issue.body
       %td= issue.labels
       %td= issue.milestone
-      %td= link_to 'Show', project_issue_path(@project, issue.id), :class => "btn btn-mini"
-      %td= link_to 'Edit', edit_project_issue_path(@project, issue.id), :class => "btn btn-mini"
-      %td= link_to 'Destroy', project_issue_path(@project, issue.id), :method => :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-mini btn-danger"
+      %td= link_to 'Show', project_issue_path(@project, issue.number), :class => "btn btn-mini"
+      %td= link_to 'Edit', edit_project_issue_path(@project, issue.number), :class => "btn btn-mini"
+      %td= link_to 'Destroy', project_issue_path(@project, issue.number), :method => :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-mini btn-danger"
 

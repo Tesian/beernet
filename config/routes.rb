@@ -4,14 +4,13 @@ Beernet::Application.routes.draw do
   resources :clients
 
   resources :projects do
+    resources :accesses
     resources :issues
     resources :events
     member do 
       get 'calendar'
     end
   end
-
-  resources :accesses
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

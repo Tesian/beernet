@@ -16,6 +16,6 @@
         %td= access.login
         %td= access.password
         %td= access.address
-        %td= link_to 'Show', access, :class => "btn btn-mini"
-        %td= link_to 'Edit', edit_access_path(access), :class => "btn btn-mini"
-        %td= link_to 'Destroy', access, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-mini btn-danger"
+        %td= link_to 'Show', [@project, access], :class => "btn btn-mini"
+        %td= link_to 'Edit', edit_project_access_path(@project, access), :class => "btn btn-mini"
+        %td= link_to 'Destroy', [@project, access], method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-mini btn-danger"

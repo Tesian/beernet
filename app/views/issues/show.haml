@@ -1,8 +1,12 @@
 = render 'header'
 
+.page-header
+  %h1 Issue n°=@issue.number
+
 %p#notice= notice
 
 %dl{ :class => "dl-horizontal" }
+
   %dt Title:
   %dd= @issue.title 
 

@@ -12,8 +12,8 @@
       - if @issue != nil && request.url.last != 'w'
         - if request.url.last != 't'
           %li
-            %a{:href => edit_project_issue_path(@project, @issue.id), :class => 'btn btn-primary'} Edit
+            %a{:href => edit_project_issue_path(@project, @issue.number), :class => 'btn btn-primary'} Edit
         - else
           %li
-            %a{:href => project_issue_path(@project, @issue.id), :class => 'btn btn-primary'} Show
+            %a{:href => project_issue_path(@project, @issue.number), :class => 'btn btn-primary'} Show
 
