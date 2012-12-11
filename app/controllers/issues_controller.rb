@@ -24,14 +24,15 @@ class IssuesController < ApplicationController
   def get_issues
     @project = Project.find(params[:project_id])
     accesses = @project.accesses
+    @access  = nil
     accesses.each do | access |
       if access.type_access.name == "github"
-        @access = access
-        Github.new basic_auth: "#{access.login}:#{access.password}"
-        issues  = Github::Issues.new.list_repo("#{access.login}", "#{access.repo_name}")
+        @access        = access
+        Github.new basic_auth: "#{current_user.username_github}:#{current_user.password_github}"
+        @issues_github = Github::Issues.new.list_repo("#{access.login}", "#{access.repo_name}")
       end
     end
-    if issues == nil
+    if @access == nil
       flash[:notice] = "Il n'y a pas d'acces github"
       redirect_to @project
     end
@@ -39,7 +40,7 @@ class IssuesController < ApplicationController
 
   def index
     @issues = []
-    issues.each do | issue |
+    @issues_github.each do | issue |
       @issues.push(Issue.new.get_issue(issue))
     end
 
