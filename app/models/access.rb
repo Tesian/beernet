@@ -1,6 +1,7 @@
 class Access < ActiveRecord::Base
 
-  has_one                       :type_access
+  has_one                       :type_access, through: :access_type_accesses
+  has_one                       :access_type_accesses
   belongs_to                    :project
 
   attr_accessible               :address, :login, :password
@@ -11,7 +12,7 @@ class Access < ActiveRecord::Base
 
 
   def repo_name
-    return self.address.split('/').last
+    return self.address.split('/').last.split('.').first
   end
 
   def type_access_attributes=(hash)
