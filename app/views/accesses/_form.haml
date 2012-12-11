@@ -1,4 +1,4 @@
-= form_for setup_access(@access), :html => { :class => 'form-horizontal' } do |f|
+= form_for [@project, setup_access(@access)], :html => { :class => 'form-horizontal' } do |f|
   - if @access.errors.any?
     #error_explanation
       %h2

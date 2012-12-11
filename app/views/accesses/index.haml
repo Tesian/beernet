@@ -4,6 +4,7 @@
 %table{ :class => "table table-striped" }
   %thead
     %tr
+      %th Type
       %th Login
       %th Password
       %th Address
@@ -13,6 +14,7 @@
   - @accesses.each do |access|
     %tbody
       %tr
+        %td= access.type_access
         %td= access.login
         %td= access.password
         %td= access.address
