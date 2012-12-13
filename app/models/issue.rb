@@ -6,10 +6,21 @@ class Issue
 
   def get_issue(issue)
     self.body      = issue.body
-    self.labels    = issue.labels
-    self.milestone = issue.milestone
     self.number    = issue.number
     self.title     = issue.title
+    self.labels    = []
+
+    issue.labels.each do | label |
+      self.labels.push(label.name)
+    end
+
+    if issue.milestone != nil
+      self.milestone = issue.milestone.due_on
+    end
+  end
+
+  def persisted?
+    false
   end
 
   attr_accessor :title, :body, :labels, :milestone, :number

@@ -1,7 +1,9 @@
 = render 'header'
 
 .page-header
-  %h1 Issue n°=@issue.number
+  %h1
+    Issue n°
+    = @issue.number
 
 %p#notice= notice
 
