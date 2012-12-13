@@ -14,7 +14,10 @@
   - @accesses.each do |access|
     %tbody
       %tr
-        %td= access.type_access
+        - if access.type_accesses.first != nil
+          %td= access.type_accesses.first.name
+        - else
+          %td  
         %td= access.login
         %td= access.password
         %td= access.address

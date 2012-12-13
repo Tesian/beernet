@@ -11,13 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121207110419) do
-
-  create_table "access", :force => true do |t|
-    t.string "login"
-    t.string "password"
-    t.string "address"
-  end
+ActiveRecord::Schema.define(:version => 20121211103610) do
 
   create_table "accesses", :force => true do |t|
     t.string   "login"
@@ -29,6 +23,14 @@ ActiveRecord::Schema.define(:version => 20121207110419) do
   end
 
   add_index "accesses", ["project_id"], :name => "index_accesses_on_project_id"
+
+  create_table "accesses_type_accesses", :force => true do |t|
+    t.integer "type_access_id"
+    t.integer "access_id"
+  end
+
+  add_index "accesses_type_accesses", ["access_id"], :name => "index_accesses_type_accesses_on_access_id"
+  add_index "accesses_type_accesses", ["type_access_id"], :name => "index_accesses_type_accesses_on_type_access_id"
 
   create_table "clients", :force => true do |t|
     t.string   "name"
@@ -66,11 +68,8 @@ ActiveRecord::Schema.define(:version => 20121207110419) do
   add_index "projects_users", ["user_id"], :name => "index_projects_users_on_user_id"
 
   create_table "type_accesses", :force => true do |t|
-    t.string  "name"
-    t.integer "access_id"
+    t.string "name"
   end
-
-  add_index "type_accesses", ["access_id"], :name => "index_type_accesses_on_access_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                    :default => "", :null => false

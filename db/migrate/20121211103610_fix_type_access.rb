@@ -5,13 +5,13 @@ class FixTypeAccess < ActiveRecord::Migration
     remove_index :type_accesses, :access_id
     remove_column :type_accesses, :access_id
 
-    create_table :access_type_accesses do |t|
+    create_table :accesses_type_accesses do |t|
       t.integer :type_access_id
       t.integer :access_id
     end
 
-    add_index :access_type_accesses, :access_id
-    add_index :access_type_accesses, :type_access_id
+    add_index :accesses_type_accesses, :access_id
+    add_index :accesses_type_accesses, :type_access_id
   end
 
   def down
@@ -24,8 +24,8 @@ class FixTypeAccess < ActiveRecord::Migration
     add_column :type_accesses, :access_id, :integer
     add_index :type_accesses, :access_id
 
-    remove_index :access_type_accesses, :access_id
-    remove_index :access_type_accesses, :type_access_id
-    drop_table :access_type_accesses
+    remove_index :accesses_type_accesses, :access_id
+    remove_index :accesses_type_accesses, :type_access_id
+    drop_table :accesses_type_accesses
   end
 end

@@ -1,7 +1,6 @@
 class TypeAccess < ActiveRecord::Base
 
-  has_many            :accesses, through: :access_type_accesses
-  has_many            :access_type_accesses
+  has_and_belongs_to_many :accesses
 
-  attr_accessible       :name
+  attr_accessible         :name
 end

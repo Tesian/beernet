@@ -10,7 +10,7 @@
   .control-group
     = f.label "Type"
     .controls
-      = f.fields_for :type_access, @access.type_access do |ff|
+      = f.fields_for :type_accesses, @access.type_accesses do |ff|
         = ff.text_field :name
   .control-group
     = f.label :login
