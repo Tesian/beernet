@@ -14,17 +14,17 @@
       %th 
       %th 
       %th 
-- @events.each do |event|
-  %tbody
-    %tr
-      %td= event.title
-      %td= event.start_time
-      %td= event.end_time
-      %td= event.all_day
-      %td= event.description
-      %td= event.where
-      %td= link_to 'Show', project_event_path(@project, event.id), :class => "btn btn-mini"
-      %td= link_to 'Edit', edit_project_event_path(@project, event.id), :class => "btn btn-mini"
-      %td= link_to 'Destroy', project_event_path(@project, event.id), :method => :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-mini btn-danger"
+  - @events.each do |event|
+    %tbody
+      %tr
+        %td= event.title
+        %td= event.start_time
+        %td= event.end_time
+        %td= event.all_day
+        %td= event.description
+        %td= event.where
+        %td= link_to 'Show', project_event_path(@project, event.id), :class => "btn btn-mini"
+        %td= link_to 'Edit', edit_project_event_path(@project, event.id), :class => "btn btn-mini"
+        %td= link_to 'Destroy', project_event_path(@project, event.id), :method => :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-mini btn-danger"
 
 = link_to 'View Calendar', calendar_project_path(@project)

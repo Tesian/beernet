@@ -3,7 +3,12 @@ Beernet::Application.routes.draw do
 
   resources :clients
 
+  devise_scope :user do
+    root to: "devise/sessions#new"
+  end
+
   resources :projects do
+    resources :todo_lists
     resources :accesses
     resources :issues
     resources :events

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 class IssuesController < ApplicationController
-  before_filter :authenticate_user!
   before_filter :get_issues
   before_filter :get_issue_with_id, :only => [:show, :edit, :update, :destroy]
   before_filter :make_issue_with_hash_github, :only => [:show, :edit]

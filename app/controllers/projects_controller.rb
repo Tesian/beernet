@@ -1,7 +1,5 @@
 class ProjectsController < ApplicationController
-include Coast
-
-  before_filter :authenticate_user!
+  include Coast
 
   def calendar
     @project = Project.find(params[:id])

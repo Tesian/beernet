@@ -1,0 +1,18 @@
+%header#overview.jumbotron.subhead
+  .row
+    .span6
+      %h1 Todo Lists
+      %p.lead Liste des choses à faire du projet
+  .subnav
+    %ul.nav.nav-pills
+      %li
+        %a{:href => project_todo_lists_path(@project), :class => 'btn btn-primary'} Liste
+      %li
+        %a{:href => new_project_todo_list_path(@project), :class => 'btn btn-primary'} New
+      - if @issue != nil && request.url.last != 'w'
+        - if request.url.last != 't'
+          %li
+            %a{:href => edit_project_todo_list_path(@project, @todo_list), :class => 'btn btn-primary'} Edit
+        - else
+          %li
+            %a{:href => project_todo_list_path(@project, @todo_list), :class => 'btn btn-primary'} Show

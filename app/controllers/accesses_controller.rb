@@ -1,5 +1,5 @@
 class AccessesController < ApplicationController
-  before_filter :authenticate_user!, :get_project
+  before_filter :get_project
 
   def get_project
     @project  = Project.find(params[:project_id])
@@ -70,7 +70,7 @@ class AccessesController < ApplicationController
     end
   end
 
-    def destroy
+  def destroy
     @access = Access.find(params[:id])
     @access.destroy
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 class EventsController < ApplicationController
 
-  before_filter :authenticate_user!, :connect_calendar
+  before_filter :connect_calendar
 
   # fonction qui récupère les events en object calendar et les mets dans des objets event
   def get_many_google_events(google_events, end_time = nil, start_time = nil)
