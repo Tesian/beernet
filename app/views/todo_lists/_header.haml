@@ -9,7 +9,7 @@
         %a{:href => project_todo_lists_path(@project), :class => 'btn btn-primary'} Liste
       %li
         %a{:href => new_project_todo_list_path(@project), :class => 'btn btn-primary'} New
-      - if @issue != nil && request.url.last != 'w'
+      - if @todo_list != nil && request.url.last != 'w'
         - if request.url.last != 't'
           %li
             %a{:href => edit_project_todo_list_path(@project, @todo_list), :class => 'btn btn-primary'} Edit
