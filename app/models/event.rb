@@ -23,6 +23,7 @@ class Event
     self.start_time  = event_google.start_time
     self.end_time    = event_google.end_time
     self.all_day     = event_google.all_day
+    self.where       = event_google.where
   end
 
   def persisted?
@@ -31,6 +32,10 @@ class Event
 
   def self.format_date(date_time)
     Time.at(date_time.to_i).to_formatted_s(:db)
+  end
+
+  def new_record?
+    false
   end
 
   attr_accessor :id, :title, :description, :start_time, :end_time, :all_day, :where

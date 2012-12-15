@@ -1,21 +1,20 @@
-= form_for [@project, @event], :html => { :class => 'form-horizontal' } do |f|
-  .control_group
-    = f.label :title
-    .controls
-      = f.text_field :title
-  = render 'datetime_select', :locals => {f: f, time: "start_time"}
-  = render 'datetime_select', :locals => {f: f, time: "end_time"}
-  .control_group
-    = f.label :all_day
-    .controls
-      = f.check_box :all_day
-  .control_group
-    = f.label :where
-    .controls
-      = f.text_field :where
-  .control_group
-    = f.label :description
-    .controls
-      = f.text_area :description
-  .form-actions
-    = f.submit nil, :class => "btn btn-primary"
+.control_group
+  = locals[:f].label :title
+  .controls
+    = locals[:f].text_field :title
+= render 'datetime_select', :locals => {f: locals[:f], time: "start_time"}
+= render 'datetime_select', :locals => {f: locals[:f], time: "end_time"}
+.control_group
+  = locals[:f].label :all_day
+  .controls
+    = locals[:f].check_box :all_day
+.control_group
+  = locals[:f].label :where
+  .controls
+    = locals[:f].text_field :where
+.control_group
+  = locals[:f].label :description
+  .controls
+    = locals[:f].text_area :description
+.form-actions
+  = locals[:f].submit nil, :class => "btn btn-primary"

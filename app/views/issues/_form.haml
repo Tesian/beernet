@@ -1,19 +1,18 @@
-= form_for [@project, @issue], :html => { :class => 'form-horizontal' } do |f|
-  .control_group
-    = f.label :title
-    .controls
-      = f.text_field :title
-  .control_group
-    = f.label "Description"
-    .controls
-      = f.text_area :body
-  .control_group
-    = f.label :labels
-    .controls
-      = f.text_field :labels
-  .control_group
-    = f.label :milestone
-    .controls
-      = f.text_field :milestone
-  .form-actions
-    = f.submit nil, :class => "btn btn-primary"
+.control_group
+  = locals[:f].label :title
+  .controls
+    = locals[:f].text_field :title
+.control_group
+  = locals[:f].label "Description"
+  .controls
+    = locals[:f].text_area :body
+.control_group
+  = locals[:f].label :labels
+  .controls
+    = locals[:f].text_field :labels
+.control_group
+  = locals[:f].label :milestone
+  .controls
+    = locals[:f].text_field :milestone
+.form-actions
+  = locals[:f].submit nil, :class => "btn btn-primary"
