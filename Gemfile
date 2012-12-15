@@ -25,6 +25,13 @@ gem 'coast'
 # Light Views
 gem 'haml'
 
+# Ligh Forms
+gem 'formtastic'
+gem 'formtastic-bootstrap'
+
+# Outside from :assets group and you know why 
+gem 'jquery-rails'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -37,7 +44,13 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
+group :test, :development do
+  gem 'pry-rails'
+  gem 'rspec-rails'
+  gem 'sqlite3'
+  gem 'awesome_print'
+  gem 'haml-rails'
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

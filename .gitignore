@@ -1,0 +1,60 @@
+.~lock.*
+.tmp*
+**.orig
+/.rvmrc
+/.powrc
+
+# If you use default configuration method, you can ignore this too :
+# config/database.yml
+
+*.rbc
+*.sassc
+.sass-cache
+capybara-*.html
+.rspec
+/.bundle
+/vendor/bundle
+/log/*
+/tmp/*
+/db/*.sqlite3
+/public/system/*
+/public/tmp/*
+/public/uploads/*
+/coverage/
+/spec/tmp/*
+rerun.txt
+
+### Editors meta-data
+
+## IntelliJ IDEA / RubyMine
+*.iml
+*.ipr
+*.iws
+.idea/
+
+## Eclipse project management files
+.buildpath
+.loadpath
+.project
+.settings/*
+.externalToolBuilders/*
+
+## Textmate
+*.tmproj
+*.tmproject
+tmtags
+
+### OS temporary files
+
+## Mac OS X
+.DS_Store
+._*
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+## Windows
+Thumbs.db
+
+## Linux
+*~
