@@ -1,11 +1,11 @@
 .control-group
-  = locals[:f].label "#{locals[:time]}"
+  = locals[:f].label "#{locals[:time_str]}"
   .controls
-    = locals[:f].fields_for :"#{locals[:time]}" do |ff|
-      = ff.select "year", ("2007".."2122").to_a
-      = ff.select "month", ("01".."12").to_a
-      = ff.select "day", ("01".."31").to_a
+    = locals[:f].fields_for :"#{locals[:time_str]}" do |ff|
+      = timetable_select(ff, "year", "2007".."2122", locals[:time])
+      = timetable_select(ff, "month", "01".."12", locals[:time])
+      = timetable_select(ff, "day", "01".."31", locals[:time])
       %br/
-      = ff.select "hours", ("00".."24").to_a
+      = timetable_select(ff, "hours", "00".."24", locals[:time])
       h
-      = ff.select "mins", ("00".."59").to_a
+      = timetable_select(ff, "mins", "00".."59", locals[:time])

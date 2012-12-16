@@ -2,8 +2,8 @@
   = locals[:f].label :title
   .controls
     = locals[:f].text_field :title
-= render 'datetime_select', :locals => {f: locals[:f], time: "start_time"}
-= render 'datetime_select', :locals => {f: locals[:f], time: "end_time"}
+= render 'datetime_select', :locals => {f: locals[:f], time_str: "start_time", time: @event.start_time}
+= render 'datetime_select', :locals => {f: locals[:f], time_str: "end_time", time: @event.end_time}
 .control_group
   = locals[:f].label :all_day
   .controls

@@ -30,13 +30,5 @@ class Event
     false
   end
 
-  def self.format_date(date_time)
-    Time.at(date_time.to_i).to_formatted_s(:db)
-  end
-
-  def new_record?
-    false
-  end
-
   attr_accessor :id, :title, :description, :start_time, :end_time, :all_day, :where
 end
