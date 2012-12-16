@@ -11,8 +11,8 @@ class IssuesController < ApplicationController
     accesses.each do | access |
       if access.type_accesses[0] != nil && access.type_accesses[0].name == "github"
         @access        = access
-        Github.new basic_auth: "#{current_user.username_github}:#{current_user.password_github}"
-        @issues_github = Github::Issues.new.list_repo("#{access.login}", "#{access.repo_name}")
+        api = Github.new
+        @issues_github = api.issues.list user:"#{access.login}", repo: "#{access.repo_name}"
       end
     end
     if @access == nil
