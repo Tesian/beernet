@@ -92,9 +92,9 @@ class IssuesController < ApplicationController
   end
 
   def update
-ap @issue_hash.actions
-    @issue_hash.title = params[:issue][:title]
-    @issue_hash.edit# @access.login, @access.repo_name, @issue_hash.id, params[:issue])
+    ap @issue_hash.actions
+    # @issue_hash.title = params[:issue][:title]
+    @api.issues.edit @access.login, @access.repo_name, @issue_hash.id, title: params[:issue][:title]
 
     respond_to do |format|
       format.html { redirect_to     project_issue_path(@project, @issue_hash.number) }
@@ -105,10 +105,7 @@ ap @issue_hash.actions
 
   def destroy
     ap @issue_hash
-    @issue_hash.state = "closed"
-    @issue_hash.closed_at = Time.now.to_s
-    ap @issue_hash
-    ap @issue_hash.edit # @access.login, @access.repo_name, @issue_hash.id, {state: "closed"})
+    @api.issues.edit @access.login, @access.repo_name, @issue_hash.id, state: "closed"
 
     respond_to do |format|
       format.html { redirect_to     project_issues_path(@project) }
