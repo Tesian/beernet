@@ -13,6 +13,9 @@ gem 'gcal4ruby'
 # link github gem
 gem "github_api", :git => 'https://github.com/peter-murach/github.git'
 
+# enumerize
+gem "enumerize"
+
 #
 gem 'awesome_print'
 

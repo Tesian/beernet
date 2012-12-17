@@ -9,7 +9,7 @@ class IssuesController < ApplicationController
     accesses = @project.accesses
     @access  = nil
     accesses.each do | access |
-      if access.type_accesses[0] != nil && access.type_accesses[0].name == "github"
+      if access.genre == "git"
         @access        = access
         @api           = Github.new basic_auth: "#{current_user.username_github}:#{current_user.password_github}"
         @issues_github = @api.issues.list user:"#{access.login}", repo: "#{access.repo_name}"
@@ -17,7 +17,7 @@ class IssuesController < ApplicationController
     end
     if @access == nil
       flash[:notice] = "Il n'y a pas d'acces github"
-      redirect_to @project
+      redirect_to new_project_access_path(@project)
     end
   end
 
