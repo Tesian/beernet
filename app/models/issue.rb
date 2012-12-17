@@ -5,17 +5,21 @@ class Issue
 
 
   def get_issue(issue)
-    self.body      = issue.body
-    self.number    = issue.number
-    self.title     = issue.title
-    self.labels    = []
+    self.body      = issue[:body]
+    self.number    = issue[:number]
+    self.title     = issue[:title]
+    self.labels = []
 
     issue.labels.each do | label |
       self.labels.push(label.name)
     end
 
-    if issue.milestone != nil
-      self.milestone = issue.milestone.due_on
+    if issue[:milestone] != nil
+      self.milestone = issue[:milestone][:number]
+    end
+    
+    if issue[:assignee] != nil
+      self.assignee  = issue[:assignee][:login]
     end
   end
 
@@ -23,5 +27,5 @@ class Issue
     false
   end
 
-  attr_accessor :title, :body, :labels, :milestone, :number
+  attr_accessor :title, :body, :labels, :milestone, :number, :assignee
 end

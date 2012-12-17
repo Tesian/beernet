@@ -31,6 +31,7 @@ class IssuesController < ApplicationController
 
   def make_issue_with_hash_github
     @issue = Issue.new
+    ap @issue_hash
     @issue.get_issue(@issue_hash)
     if @issue == nil
       flash[:notice] = "Il n'y a pas d'issue de ce numéro."
@@ -81,7 +82,8 @@ class IssuesController < ApplicationController
 
   def create
     issue = params[:issue]
-    @issue = @api.issues.create @access.login, @access.repo_name, :title => issue[:title], :body => issue[:body], :labels => issue[:labels], :milestone => issue[:milestone]
+    ap issue
+    @issue = @api.issues.create @access.login, @access.repo_name, :title => issue[:title], :body => issue[:body], :assignee => issue[:assignee], :milestone => issue[:milestone], :labels => [issue[:labels]]
     ap @issue
       
     respond_to do |format|
@@ -92,9 +94,7 @@ class IssuesController < ApplicationController
   end
 
   def update
-    ap @issue_hash.actions
-    # @issue_hash.title = params[:issue][:title]
-    @api.issues.edit @access.login, @access.repo_name, @issue_hash.id, title: params[:issue][:title]
+    @api.issues.edit @access.login, @access.repo_name, @issue_hash.id, title: params[:issue][:title], body: params[:issue][:body], labels: params[:issue][:labels]
 
     respond_to do |format|
       format.html { redirect_to     project_issue_path(@project, @issue_hash.number) }
@@ -104,7 +104,6 @@ class IssuesController < ApplicationController
   end
 
   def destroy
-    ap @issue_hash
     @api.issues.edit @access.login, @access.repo_name, @issue_hash.id, state: "closed"
 
     respond_to do |format|

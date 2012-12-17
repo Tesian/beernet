@@ -8,6 +8,7 @@
       %th Number
       %th Title
       %th Description
+      %th Assignee
       %th Labels
       %th Milestone
       %th 
@@ -19,6 +20,7 @@
         %td= issue.number
         %td= issue.title
         %td= issue.body
+        %td= issue.assignee
         %td= issue.labels
         %td= issue.milestone
         %td= link_to 'Show', project_issue_path(@project, issue.number), :class => "btn btn-mini"

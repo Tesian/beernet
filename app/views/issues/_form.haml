@@ -7,11 +7,15 @@
   .controls
     = locals[:f].text_area :body
 .control_group
+  = locals[:f].label "Login personne assignée"
+  .controls
+    = locals[:f].text_field :assignee
+.control_group
   = locals[:f].label :labels
   .controls
     = locals[:f].text_field :labels
 .control_group
-  = locals[:f].label :milestone
+  = locals[:f].label "Numero milestone"
   .controls
     = locals[:f].text_field :milestone
 .form-actions
