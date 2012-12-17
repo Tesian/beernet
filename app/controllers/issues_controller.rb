@@ -31,7 +31,6 @@ class IssuesController < ApplicationController
 
   def make_issue_with_hash_github
     @issue = Issue.new
-    ap @issue_hash
     @issue.get_issue(@issue_hash)
     if @issue == nil
       flash[:notice] = "Il n'y a pas d'issue de ce numéro."
@@ -82,9 +81,7 @@ class IssuesController < ApplicationController
 
   def create
     issue = params[:issue]
-    ap issue
-    @issue = @api.issues.create @access.login, @access.repo_name, :title => issue[:title], :body => issue[:body], :assignee => issue[:assignee], :milestone => issue[:milestone], :labels => [issue[:labels]]
-    ap @issue
+    @issue = @api.issues.create @access.login, @access.repo_name, :title => issue[:title], :body => issue[:body], :assignee => issue[:assignee], :milestone => issue[:milestone], :labels => issue[:labels].delete("[]\" ").split(",")
       
     respond_to do |format|
       format.html { redirect_to     project_issue_path(@project, @issue.number) }
@@ -94,7 +91,7 @@ class IssuesController < ApplicationController
   end
 
   def update
-    @api.issues.edit @access.login, @access.repo_name, @issue_hash.id, title: params[:issue][:title], body: params[:issue][:body], labels: params[:issue][:labels]
+    @api.issues.edit @access.login, @access.repo_name, @issue_hash.id, title: params[:issue][:title]
 
     respond_to do |format|
       format.html { redirect_to     project_issue_path(@project, @issue_hash.number) }
