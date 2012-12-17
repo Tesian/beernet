@@ -10,7 +10,8 @@ class TodosController < ApplicationController
 
   def create
     todo = Todo.create({body: params[:body]})
-    TodoList.find(params[:todo_list_id]}).todos << todo
+    todo_list = TodoList.find(params[:todo_list_id])
+    todo_list.todos << todo
 
     respond_to do |format|
       format.json { render :json => todo }

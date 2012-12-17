@@ -4,44 +4,54 @@ $(document).ready(function(){
     {
 	var data;
         $.ajax({
-	    url: "http://" + window.location.hostname + ":3000" + "/todos?todo_list_id=" + window.location.href.split("/")[6],
+	    url: "http://" + window.location.hostname + ":3000" + "/todos?todo_list_id=" + window.location.href.split("/")[6], // Enlever le + ":3000" en prod
             dataType: 'json',
 	    data: data,
             success: function(data){
 		for(var i= 0; i < data.length; i++)
 		{
-		    var todo = document.createElement("div");
-		    todo.setAttribute("data-id", data[i]["id"]);
-		    todo.innerHTML = data[i]["body"];
-		    document.getElementById('todo_wrapper').appendChild(todo);
+		    add_todo(data[i]);
 		}
-		my_input  = document.createElement("input");
-		my_input.setAttribute("id", "new_todo");
-		document.getElementById('todo_wrapper').appendChild(my_input);
-
-		my_button = document.createElement("button");
-		my_button.setAttribute("id", "add_todo");
-		my_button.innerHTML = "add todo";
-		document.getElementById('todo_wrapper').appendChild(my_button);
+		$(".delete_todo").click(function(e) {
+		    e.preventDefault();
+		    var link_delete = $(this)
+		    $.ajax({
+			type: "DELETE",
+			url: "http://" + window.location.hostname + ":3000" + "/todos/" + $(this).data("id"),// Enlever le + ":3000" en prod
+			data: data,
+			success: function(data){
+			    link_delete.parent().remove();
+			}
+		    });
+		});
 	    }
 	});
     }
 
     // don't work when click nothing happens
-    $("button#add_todo").click(function(e){
+    $("#add_todo").click(function(e){
 	e.preventDefault();
 
-	var data = "body" + $("#new_todo").attr("value") + "&todo_list_id=" + window.location.href.split("/")[6];
+	var data = "body=" + $("#new_todo").attr("value") + "&todo_list_id=" + window.location.href.split("/")[6];
         $.ajax({
 	    type: "POST",
-	    url: "http://" + window.location.hostname + ":3000" + "/todos",
+	    url: "http://" + window.location.hostname + ":3000" + "/todos",// Enlever le + ":3000" en prod
             data: data,
             success: function(data){
-		var todo = document.createElement("div");
-		todo.setAttribute("data-id", data[i]["id"]);
-		todo.innerHTML = data[i]["body"];
-		document.getElementById('todo_wrapper').appendChild(todo);
+		add_todo(data);
 	    }
 	});
     });
+
+    function add_todo(data){
+	var todo = document.createElement("div");
+	todo.innerHTML = data["body"] + " ";
+	document.getElementById('todo_wrapper').insertBefore(todo, document.getElementById('new_todo'));
+	var delete_todo = document.createElement("a")
+	delete_todo.setAttribute("href", "");
+	delete_todo.setAttribute("class", "delete_todo");
+	delete_todo.setAttribute("data-id", data["id"]);
+	delete_todo.innerHTML = "X";
+	todo.appendChild(delete_todo);
+    }
 })
