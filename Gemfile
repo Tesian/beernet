@@ -11,7 +11,7 @@ gem 'sqlite3'
 gem 'gcal4ruby'
 
 # link github gem
-gem "github_api"
+gem "github_api", :git => 'https://github.com/peter-murach/github.git'
 
 #
 gem 'awesome_print'

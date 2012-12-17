@@ -4,7 +4,8 @@ Beernet::Application.routes.draw do
   }
 
   resources :clients
-
+  resources :todos
+  
   devise_scope :user do
     root to: "devise/sessions#new"
   end

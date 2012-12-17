@@ -11,8 +11,8 @@ class IssuesController < ApplicationController
     accesses.each do | access |
       if access.type_accesses[0] != nil && access.type_accesses[0].name == "github"
         @access        = access
-        api = Github.new
-        @issues_github = api.issues.list user:"#{access.login}", repo: "#{access.repo_name}"
+        @api           = Github.new basic_auth: "#{current_user.username_github}:#{current_user.password_github}"
+        @issues_github = @api.issues.list user:"#{access.login}", repo: "#{access.repo_name}"
       end
     end
     if @access == nil
@@ -80,30 +80,38 @@ class IssuesController < ApplicationController
   end
 
   def create
-    Github::Issues.create(current_user.username_github, @access.repo_name, params[:issue])
-
+    issue = params[:issue]
+    @issue = @api.issues.create @access.login, @access.repo_name, :title => issue[:title], :body => issue[:body], :labels => issue[:labels], :milestone => issue[:milestone]
+    ap @issue
+      
     respond_to do |format|
-      format.html { redirect_to     @project }
+      format.html { redirect_to     project_issue_path(@project, @issue.number) }
       format.xml  { render :xml =>  @issue }
       format.js   { render :json => @issue }
     end
   end
 
   def update
-    @issue_hash.edit(@access.login, @access.repo_name, @issue_hash.id, params[:issue])
+ap @issue_hash.actions
+    @issue_hash.title = params[:issue][:title]
+    @issue_hash.edit# @access.login, @access.repo_name, @issue_hash.id, params[:issue])
 
     respond_to do |format|
-      format.html { redirect_to     @project }
+      format.html { redirect_to     project_issue_path(@project, @issue_hash.number) }
       format.xml  { render :xml =>  @issue }
       format.js   { render :json => @issue }
     end
   end
 
   def destroy
-    @issue_hash.edit(@access.login, @access.repo_name, @issue_hash.id, {state: "closed"})
+    ap @issue_hash
+    @issue_hash.state = "closed"
+    @issue_hash.closed_at = Time.now.to_s
+    ap @issue_hash
+    ap @issue_hash.edit # @access.login, @access.repo_name, @issue_hash.id, {state: "closed"})
 
     respond_to do |format|
-      format.html { redirect_to     @project }
+      format.html { redirect_to     project_issues_path(@project) }
       format.xml  { render :xml =>  @issue }
       format.js   { render :json => @issue }
     end
