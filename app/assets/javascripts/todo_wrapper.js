@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    if ($("#todo_wrapper"))
+    if ($("#todo_wrapper").length != 0)
     {
 	var data;
         $.ajax({
