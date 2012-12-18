@@ -91,7 +91,8 @@ class IssuesController < ApplicationController
   end
 
   def update
-    @api.issues.edit @access.login, @access.repo_name, @issue_hash.id, title: params[:issue][:title]
+    issue = params[:issue]
+    @api.issues.edit @access.login, @access.repo_name, @issue_hash.number, :title => issue[:title], :body => issue[:body], :assignee => issue[:assignee], :milestone => issue[:milestone], :labels => issue[:labels].delete("[]\" ").split(",")
 
     respond_to do |format|
       format.html { redirect_to     project_issue_path(@project, @issue_hash.number) }
@@ -101,7 +102,7 @@ class IssuesController < ApplicationController
   end
 
   def destroy
-    @api.issues.edit @access.login, @access.repo_name, @issue_hash.id, state: "closed"
+    @api.issues.edit @access.login, @access.repo_name, @issue_hash.number, state: "closed"
 
     respond_to do |format|
       format.html { redirect_to     project_issues_path(@project) }
