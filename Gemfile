@@ -5,19 +5,19 @@ gem 'rails', '3.2.8'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+gem 'pg'
 
 # link google calendar gem
 gem 'gcal4ruby'
 
 # link github gem
-gem "github_api", :git => 'https://github.com/peter-murach/github.git'
+gem "github_api"
+
+# Heroku
+gem "heroku"
 
 # enumerize
 gem "enumerize"
-
-#
-gem 'awesome_print'
 
 # User system
 gem 'devise'
