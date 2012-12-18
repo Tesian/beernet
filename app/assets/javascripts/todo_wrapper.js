@@ -35,7 +35,7 @@ $(document).ready(function(){
 	var data = "body=" + $("#new_todo").attr("value") + "&todo_list_id=" + window.location.href.split("/")[6];
         $.ajax({
 	    type: "POST",
-	    url: "http://" + window.location.hostname + ":3000" + "/todos",// Enlever le + ":3000" en prod
+	    url: "http://" + window.location.hostname + "/todos",
             data: data,
             success: function(data){
 		add_todo(data);
