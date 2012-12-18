@@ -21,14 +21,14 @@
           .row
             .nav-collapse.collapse.pull-right
               %ul.nav
-	        %li
-		  = link_to "Clients", clients_path
-	        %li
-		  = link_to "Projets", projects_path
-		%li
-	        - if @project != nil
-	          %li
-		    = link_to "Retourner au projet", project_path(@project)
+                %li
+                  = link_to "Clients", clients_path
+                %li
+                  = link_to "Projets", projects_path
+                %li
+                - if @project != nil
+                  %li
+                    = link_to "Retourner au projet", project_path(@project)
                 - if user_signed_in?
                   %li{:class => "dropdown"}
                     %a.dropdown-toggle#menu{"data-toggle" => "dropdown", "data-target" => "#", :role => "button"}
