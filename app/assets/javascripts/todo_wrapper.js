@@ -39,6 +39,7 @@ $(document).ready(function(){
             data: data,
             success: function(data){
 		add_todo(data);
+		$("#new_todo").val("");
 	    }
 	});
     });
