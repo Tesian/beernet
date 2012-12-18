@@ -17,7 +17,7 @@ class EventsController < ApplicationController
     end
 
     # Le résultat étant dans un array on récupère le premier
-    if @cal.length == 1
+    if @cal.respond_to?(:length)
       @cal = @cal.first
     end
   end
