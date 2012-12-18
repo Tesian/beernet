@@ -4,7 +4,7 @@ $(document).ready(function(){
     {
 	var data;
         $.ajax({
-	    url: "http://" + window.location.hostname + ":3000" + "/todos?todo_list_id=" + window.location.href.split("/")[6], // Enlever le + ":3000" en prod
+	    url: "http://" + window.location.hostname + "/todos?todo_list_id=" + window.location.href.split("/")[6],
             dataType: 'json',
 	    data: data,
             success: function(data){
@@ -17,7 +17,7 @@ $(document).ready(function(){
 		    var link_delete = $(this)
 		    $.ajax({
 			type: "DELETE",
-			url: "http://" + window.location.hostname + ":3000" + "/todos/" + $(this).data("id"),// Enlever le + ":3000" en prod
+			url: "http://" + window.location.hostname + "/todos/" + $(this).data("id"),
 			data: data,
 			success: function(data){
 			    link_delete.parent().remove();
