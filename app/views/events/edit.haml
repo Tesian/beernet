@@ -4,5 +4,5 @@
   %h1 Editing event
 
 = form_for [@project, @event], :url => project_event_path(@project, @event.id), :method => :put, :html => { :class => 'edit_event form-horizontal', :id => "edit_event_" + @event.id.to_s } do |f|
-  = render 'form', :locals => {f: f}
+  = render 'form', :locals => {f: f, submit: "Update Event"}
 

@@ -4,5 +4,5 @@
   %h1 Editing Issue
 
 = form_for [@project, @issue], :url => project_issue_path(@project, @issue.number), :method => :put, :html => { :class => 'edit_issue form-horizontal', :id => "edit_issue_" + @issue.number.to_s } do |f|
-  = render 'form', :locals => {f: f}
+  = render 'form', :locals => {f: f, submit: "Update Issue"}
 

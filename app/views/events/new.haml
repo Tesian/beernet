@@ -4,4 +4,4 @@
   %h1 New event
 
 = form_for [@project, @event], :html => { :class => 'form-horizontal' } do |f|
-  = render 'form', :locals => {f: f}
+  = render 'form', :locals => {f: f, submit: "Create Event"}

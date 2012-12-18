@@ -2,6 +2,7 @@ class Event
   extend  ActiveModel::Naming
   include ActiveModel::AttributeMethods
   include ActiveModel::Conversion
+  include Rails.application.routes.url_helpers
 
   def as_json(options = {})
     {

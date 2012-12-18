@@ -3,7 +3,6 @@ class Issue
   include ActiveModel::AttributeMethods
   include ActiveModel::Conversion
 
-
   def get_issue(issue)
     self.body      = issue[:body]
     self.number    = issue[:number]

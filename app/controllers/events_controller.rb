@@ -53,7 +53,7 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event = Event.new
+    @event           = Event.new
 
     respond_to do |format|
       format.html
@@ -63,9 +63,9 @@ class EventsController < ApplicationController
   end
 
   def edit
-    events_gcal = @cal.events
-    events      = get_many_google_events(events_gcal, nil, nil)
-    @event      = events[params[:id].to_i]
+    events_gcal      = @cal.events
+    events           = get_many_google_events(events_gcal, nil, nil)
+    @event           = events[params[:id].to_i]
 
     respond_to do |format|
       format.html

@@ -4,4 +4,4 @@
   %h1 New issue
 
 = form_for [@project, @issue], :html => { :class => 'form-horizontal' } do |f|
-  = render 'form', :locals => {f: f}
+  = render 'form', :locals => {f: f, submit: "Create Issue"}

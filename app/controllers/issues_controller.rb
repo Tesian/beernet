@@ -62,7 +62,7 @@ class IssuesController < ApplicationController
   end
 
   def new
-    @issue = Issue.new
+    @issue           = Issue.new
 
     respond_to do |format|
       format.html
