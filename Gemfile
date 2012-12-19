@@ -8,7 +8,7 @@ gem 'rails', '3.2.8'
 gem 'pg'
 
 # link dropbox gem
-gem 'dropbox-sdk'
+gem 'dropbox'
 
 # link google calendar gem
 gem 'gcal4ruby'

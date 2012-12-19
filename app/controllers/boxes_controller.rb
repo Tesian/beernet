@@ -1,4 +1,3 @@
-require 'dropbox_sdk'
 class BoxesController < ApplicationController
   before_filter :get_project
 
@@ -46,23 +45,21 @@ class BoxesController < ApplicationController
     @box = Box.new({username: params[:username]})
     @box.project_id = @project.id
 
-    session = DropBox::Session.new(params[:username], params[:password])
-    session.get_request_token
-    @authorize_url = session.get_authorize_url
+    session = Dropbox::Session.new(params[:username], params[:password])
+    session.mode = :sandbox
+    @authorize_url = session.authorize_url
 
-    if session.get_access_token == nil
-      render html
-    else
-      respond_to do |format|
-        if @box.save
-          format.html { redirect_to [@project, @box], notice: 'Box was successfully created.' }
-          format.json { render json: @box, status: :created, location: [@project, @box] }
-        else
-          format.html { render action: "new" }
-          format.json { render json: @box.errors, status: :unprocessable_entity }
-        end
-      end
-    end
+    render html
+      # respond_to do |format|
+      #   if @box.save
+      #     format.html { redirect_to [@project, @box], notice: 'Box was successfully created.' }
+      #     format.json { render json: @box, status: :created, location: [@project, @box] }
+      #   else
+      #     format.html { render action: "new" }
+      #     format.json { render json: @box.errors, status: :unprocessable_entity }
+      #   end
+      # end
+    # end
   end
 
   def update
