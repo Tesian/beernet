@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121217134200) do
+ActiveRecord::Schema.define(:version => 20121219104725) do
 
   create_table "accesses", :force => true do |t|
     t.string   "login"
@@ -24,6 +24,14 @@ ActiveRecord::Schema.define(:version => 20121217134200) do
   end
 
   add_index "accesses", ["project_id"], :name => "index_accesses_on_project_id"
+
+  create_table "boxes", :force => true do |t|
+    t.integer "project_id"
+    t.string  "username"
+    t.string  "auth_token"
+  end
+
+  add_index "boxes", ["project_id"], :name => "index_boxes_on_project_id"
 
   create_table "clients", :force => true do |t|
     t.string   "name"

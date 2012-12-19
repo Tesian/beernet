@@ -1,0 +1,18 @@
+%header#overview.jumbotron.subhead
+  .row
+    .span6
+      %h1 Box
+      %p.lead Accès aux divers box d'un projet.
+  .subnav
+    %ul.nav.nav-pills
+      %li
+        %a{:href => project_boxes_path(@project), :class => 'btn btn-primary'} Liste
+      %li
+        %a{:href => new_project_box_path(@project), :class => 'btn btn-primary'} New
+      - if @box != nil && @box.new_record? != true
+        - if request.url.last != 't'
+          %li
+            %a{:href => edit_project_box_path(@project, @box), :class => 'btn btn-primary'} Edit
+        - else
+          %li
+            %a{:href => project_box_path(@project, @box), :class => 'btn btn-primary'} Show

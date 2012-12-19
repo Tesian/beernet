@@ -44,17 +44,17 @@ class AccessesController < ApplicationController
   def create
     @access            = Access.new(params[:access])
     @access.project_id = @project.id
+
     respond_to do |format|
       if @access.save
         format.html { redirect_to [@project, @access], notice: 'Access was successfully created.' }
         format.json { render json: @access, status: :created, location: [@project, @access] }
-      else
+        else
         format.html { render action: "new" }
         format.json { render json: @access.errors, status: :unprocessable_entity }
       end
     end
   end
-
 
   def update
     @access = Access.find(params[:id])

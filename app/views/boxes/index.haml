@@ -1,0 +1,19 @@
+= render 'header'
+.page-header
+  %h1 Listing boxes
+%table{ :class => "table table-striped" }
+  %thead
+    %tr
+      %th Login
+      %th Password
+      %th
+      %th
+      %th
+  - @boxes.each do |box|
+    %tbody
+      %tr
+        %td= box.username
+        %td= box.auth_token
+        %td= link_to 'Show', [@project, box], :class => "btn btn-mini"
+        %td= link_to 'Edit', edit_project_box_path(@project, box), :class => "btn btn-mini"
+        %td= link_to 'Destroy', [@project, box], method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-mini btn-danger"

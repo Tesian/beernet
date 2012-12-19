@@ -12,6 +12,8 @@ class IssuesController < ApplicationController
       if access.genre == "git"
         @access        = access
         @api           = Github.new basic_auth: "#{current_user.username_github}:#{current_user.password_github}"
+        # api = Github.new :client_id => "#{current_user.username_github}", :client_secret => "#{current_user.password_github}"
+        # @authorize_url = api.authorize_url :redirect_uri => 'http://localhost', :scope => 'repo'
         @issues_github = @api.issues.list user:"#{access.login}", repo: "#{access.repo_name}"
       end
     end

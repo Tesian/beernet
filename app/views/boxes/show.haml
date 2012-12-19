@@ -1,0 +1,10 @@
+= render 'header'
+
+%p#notice= notice
+
+%dl{ :class => "dl-horizontal" }
+  %dt  Login:
+  %dd= @box.username
+
+  %dt  Password:
+  %dd= @box.auth_token

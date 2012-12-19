@@ -11,6 +11,7 @@ Beernet::Application.routes.draw do
   end
 
   resources :projects do
+    resources :boxes
     resources :todo_lists
     resources :accesses
     resources :issues

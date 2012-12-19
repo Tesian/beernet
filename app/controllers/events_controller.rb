@@ -9,10 +9,12 @@ class EventsController < ApplicationController
 
     # Connexion à google calendar avec l'user authentifié
     @service.authenticate(current_user.username_google_calendar, current_user.password_google_calendar)
-
+    # ap @service.auth_token
+    # ap @service.authsub_authenticate("DQAAAMYAAAD5YkBuidgWziVI1Z6Fia5HJ9Xczl-clYOVF593JLpfTWm0SqAH0J8PoexYExtO_f0-qnAI8QcZf7RcsKFkpT7CGl817Pcm12jZqyldTVpN6Zrgm_kdl8vYQt5b3CAYXgW8BN1MwSMSYEMx_9PxZgQ0Q_T5dUCWCAUvDNnbJqi5H0q3T_3I6FJdZQjW0F7th3wV1QmHSA0Zuvvmybuto13r00VbTjKyBQIUVY6ePPHBuUOsF6IrWtuLMbmAQecdmECg3QDyR8EznDNnQFHQ_X00", "tessieradrian@yahoo.fr")
+    
     # Si aucun calendrier n'existe aux noms du projets le créer (il sera selectionné si il existe)
-    if ((@cal = GCal4Ruby::Calendar.find(@service, {:title => @project.name})).length == 0)
-      @cal = GCal4Ruby::Calendar.new(@service, {:title => @project.name})
+    if ((@cal = GCal4Ruby::Calendar.find(@service, @project.name)).length == 0)
+      @cal = GCal4Ruby::Calendar.new(@service, @project.name)
       @cal.save
     end
 
