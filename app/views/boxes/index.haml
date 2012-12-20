@@ -4,15 +4,17 @@
 %table{ :class => "table table-striped" }
   %thead
     %tr
-      %th Login
-      %th Password
+      %th Name
+      %th App_secret
+      %th Auth_token
       %th
       %th
       %th
   - @boxes.each do |box|
     %tbody
       %tr
-        %td= box.username
+        %td= box.app_name
+        %td= box.app_secret
         %td= box.auth_token
         %td= link_to 'Show', [@project, box], :class => "btn btn-mini"
         %td= link_to 'Edit', edit_project_box_path(@project, box), :class => "btn btn-mini"

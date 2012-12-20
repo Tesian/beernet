@@ -49,10 +49,10 @@ GEM
       railties (~> 3.1)
       warden (~> 1.2.1)
     diff-lcs (1.1.3)
-    dropbox (1.3.0)
-      json (>= 1.2.0)
-      multipart-post (>= 1.1.0)
-      oauth (>= 0.3.6)
+    dropbox-api (0.3.2)
+      hashie
+      multi_json
+      oauth
     enumerize (0.5.1)
       activesupport (>= 3.2)
     erubis (2.7.0)
@@ -198,7 +198,7 @@ DEPENDENCIES
   coast
   coffee-rails (~> 3.2.1)
   devise
-  dropbox
+  dropbox-api
   enumerize
   formtastic
   formtastic-bootstrap

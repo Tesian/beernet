@@ -3,8 +3,14 @@
 %p#notice= notice
 
 %dl{ :class => "dl-horizontal" }
-  %dt  Login:
-  %dd= @box.username
+  %dt  Name:
+  %dd= @box.app_name
 
-  %dt  Password:
+  %dt  app_secret:
+  %dd= @box.app_secret
+
+  %dt  Auth_token:
   %dd= @box.auth_token
+
+%div
+  = @client.ls

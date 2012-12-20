@@ -1,19 +1,15 @@
-= form_for [@project, @box], :html => { :class => 'form-horizontal' } do |f|
-  - if @box.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@box.errors.count, "error")
-        prohibited this box from being saved:
-      %ul
-        - @box.errors.full_messages.each do |msg|
-          %li= msg
+= form_tag project_boxes_path(@project) do -
   .control-group
-    = f.label :login
+    = label_tag :app_name
     .controls
-      = f.text_field :username
+      = text_field_tag :app_name
   .control-group
-    = f.label :password
+    = label_tag :app_key
     .controls
-      = f.password_field :password
+      = text_field_tag :app_key
+  .control-group
+    = label_tag :app_secret
+    .controls
+      = text_field_tag :app_secret
   .form-actions
-    = f.submit nil, :class => "btn btn-primary"
+    = submit_tag nil, :class => "btn btn-primary"

@@ -27,7 +27,8 @@ ActiveRecord::Schema.define(:version => 20121219104725) do
 
   create_table "boxes", :force => true do |t|
     t.integer "project_id"
-    t.string  "username"
+    t.string  "app_name"
+    t.string  "app_secret"
     t.string  "auth_token"
   end
 
