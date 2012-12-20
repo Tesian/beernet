@@ -11,9 +11,15 @@ class BoxesController < ApplicationController
 
     if params[:oauth_token] != nil
       box = Box.last
-      box.auth_token = params[:oauth_token]
+      
+      Dropbox::API::Config.app_key    = box.auth_token
+      Dropbox::API::Config.app_secret = box.app_secret
+      Dropbox::API::Config.mode       = "sandbox"
+      consumer                        = Dropbox::API::OAuth.consumer(:authorize)
+      request_token                   = consumer.get_request_token
+      box.auth_token                  = request_token.get_access_token(:oauth_verifier => params[:oauth_token])
       box.save
-      flash[notice] = "Autorisation bien effectuée"
+      flash[notice]                   = "Autorisation bien effectuée"
     end
     
     respond_to do |format|
@@ -51,7 +57,7 @@ class BoxesController < ApplicationController
     end
   end
   def create
-    @box = Box.new({app_name: params[:app_name], app_secret: params[:app_secret]})
+    @box = Box.new({app_name: params[:app_name], app_secret: params[:app_secret], auth_token: params[:app_key]})
     @box.project_id = @project.id
 
     Dropbox::API::Config.app_key    = params[:app_key]
