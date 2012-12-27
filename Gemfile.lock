@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/mgornick/gcal4ruby.git
+  revision: 35067647be648ea13fe8692cb3c1057bf79b67b4
+  specs:
+    gcal4ruby (0.3.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -66,9 +72,7 @@ GEM
     formtastic-bootstrap (2.0.0)
       formtastic (~> 2.2)
       formtastic-bootstrap
-    gcal4ruby (0.5.5)
-      gdata4ruby (>= 0.1.5)
-    gdata4ruby (0.1.5)
+    gdata (1.1.2)
     github_api (0.8.4)
       faraday (~> 0.8.1)
       hashie (~> 1.2.0)
@@ -111,7 +115,7 @@ GEM
     multi_json (1.5.0)
     multipart-post (1.1.5)
     netrc (0.7.7)
-    nokogiri (1.5.5)
+    nokogiri (1.5.6)
     oauth (0.4.7)
     oauth2 (0.8.0)
       faraday (~> 0.8)
@@ -158,7 +162,7 @@ GEM
     rspec-core (2.12.2)
     rspec-expectations (2.12.1)
       diff-lcs (~> 1.1.3)
-    rspec-mocks (2.12.0)
+    rspec-mocks (2.12.1)
     rspec-rails (2.12.0)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
@@ -167,7 +171,7 @@ GEM
       rspec-expectations (~> 2.12.0)
       rspec-mocks (~> 2.12.0)
     rubyzip (0.9.9)
-    sass (3.2.3)
+    sass (3.2.4)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
@@ -202,7 +206,8 @@ DEPENDENCIES
   enumerize
   formtastic
   formtastic-bootstrap
-  gcal4ruby
+  gcal4ruby!
+  gdata
   github_api
   haml
   haml-rails

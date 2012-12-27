@@ -28,6 +28,7 @@ class BoxesController < ApplicationController
       format.js  { render :json => @boxes }
     end
   end
+
   def show
     @box = Box.find(params[:id])
     @client = Dropbox::API::Client.new :token => @box.auth_token, :secret => @box.app_secret
@@ -38,6 +39,7 @@ class BoxesController < ApplicationController
       format.js  { render :json => @box }
     end
   end
+
   def new
     @box = Box.new
 
@@ -47,6 +49,7 @@ class BoxesController < ApplicationController
       format.js  { render :json => @box }
     end
   end
+
   def edit
     @box = Box.find(params[:id])
 
@@ -56,6 +59,7 @@ class BoxesController < ApplicationController
       format.js  { render :json => @box }
     end
   end
+
   def create
     @box = Box.new({app_name: params[:app_name], app_secret: params[:app_secret], auth_token: params[:app_key]})
     @box.project_id = @project.id
@@ -84,6 +88,7 @@ class BoxesController < ApplicationController
       end
     end
   end
+
   def destroy
     @box = Box.find(params[:id])
     @box.destroy

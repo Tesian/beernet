@@ -26,4 +26,3 @@
         %td= link_to 'Show', project_issue_path(@project, issue.number), :class => "btn btn-mini"
         %td= link_to 'Edit', edit_project_issue_path(@project, issue.number), :class => "btn btn-mini"
         %td= link_to 'Close', project_issue_path(@project, issue.number), :method => :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-mini btn-danger"
-/= link_to "HERE", @authorize_url

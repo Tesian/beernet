@@ -1,0 +1,18 @@
+%div
+  Pour créer une connexion Oauth il faut créer l'accès sur dropbox suivez ce lien : 
+  = link_to "Create access", "https://www.dropbox.com/login?cont=https%3A//www.dropbox.com/developers/apps"
+  %br
+  Ensuite récupérez l'app key et l'app secret de l'accès créée, et remplissez le formulaire ci-dessous.
+  - if current_user.dropbox_oauth_token != ""
+    L'accès semble déjà enregistré
+= form_tag dropbox_authorize_path, :html => { :class => 'form-horizontal' } do
+  .control_group
+    = label_tag "App key"
+    .controls
+      = text_field_tag "app_key"
+  .control_group
+    = label_tag "App secret"
+    .controls
+      = text_field_tag "app_secret"
+  .form-actions
+    = submit_tag "Create authorize url", :class => "btn btn-primary"

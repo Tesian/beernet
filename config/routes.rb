@@ -1,7 +1,17 @@
 Beernet::Application.routes.draw do
-  devise_for :users, :controllers => { 
-    :registrations => "registrations" 
-  }
+  devise_for :users, :controllers => { :registrations => "registrations" }
+
+  GithubController.public_instance_methods(false).select{|m| !(m.to_s =~ /^_/)}.each do |m|
+    match "github/#{m}", :action => m, :controller => "github", :as => "github_#{m}"
+  end
+
+  GcalController.public_instance_methods(false).select{|m| !(m.to_s =~ /^_/)}.each do |m|
+    match "gcal/#{m}", :action => m, :controller => "gcal", :as => "gcal_#{m}"
+  end
+
+  DropboxController.public_instance_methods(false).select{|m| !(m.to_s =~ /^_/)}.each do |m|
+    match "dropbox/#{m}", :action => m, :controller => "dropbox", :as => "dropbox_#{m}"
+  end
 
   resources :clients
   resources :todos

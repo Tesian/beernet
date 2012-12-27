@@ -2,8 +2,8 @@ class User < ActiveRecord::Base
   
   # Attributes
   attr_accessible :email, :username_google_calendar, 
-                  :password_google_calendar,
-                  :username_github, :password_github, :password,
+                  :github_oauth_token, :gcal_oauth_token,
+                  :dropbox_oauth_token, :password,
                   :password_confirmation, :remember_me
                   
   # Associations

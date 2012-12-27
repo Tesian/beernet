@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121219104725) do
+ActiveRecord::Schema.define(:version => 20121227124528) do
 
   create_table "accesses", :force => true do |t|
     t.string   "login"
@@ -84,22 +84,22 @@ ActiveRecord::Schema.define(:version => 20121219104725) do
   add_index "todos", ["todo_list_id"], :name => "index_todos_on_todo_list_id"
 
   create_table "users", :force => true do |t|
-    t.string   "email",                    :default => "", :null => false
-    t.string   "encrypted_password",       :default => "", :null => false
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",            :default => 0
+    t.integer  "sign_in_count",          :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
-    t.string   "username_google_calendar"
-    t.string   "password_google_calendar"
-    t.string   "username_github"
-    t.string   "password_github"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.string   "github_oauth_token",     :default => ""
+    t.string   "dropbox_oauth_token",    :default => ""
+    t.string   "dropbox_secret",         :default => ""
+    t.string   "gcal_oauth_token",       :default => ""
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
