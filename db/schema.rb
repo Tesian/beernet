@@ -96,10 +96,10 @@ ActiveRecord::Schema.define(:version => 20121227124528) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
-    t.string   "github_oauth_token",     :default => ""
-    t.string   "dropbox_oauth_token",    :default => ""
-    t.string   "dropbox_secret",         :default => ""
-    t.string   "gcal_oauth_token",       :default => ""
+    t.string   "github",                 :default => ""
+    t.string   "dropbox",                :default => ""
+    t.string   "google",                 :default => ""
+    t.string   "uid",                    :default => ""
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

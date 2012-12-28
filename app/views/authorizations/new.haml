@@ -1,0 +1,16 @@
+%div
+  Pour créer une connexion Oauth il faut créer l'accès sur l'app suivez ce lien :
+  = link_to "Create access", @create_access
+  %br
+  Ensuite récupérez l'app key et l'app secret de l'accès app créée, et remplissez le formulaire ci-dessous.
+= form_tag @authorize_url, :html => { :class => 'form-horizontal' } do
+  .control_group
+    = label_tag "App key"
+    .controls
+      = text_field_tag "app_key"
+  .control_group
+    = label_tag "App secret"
+    .controls
+      = text_field_tag "app_secret"
+  .form-actions
+    = submit_tag "Go to authorize url", :class => "btn btn-primary"

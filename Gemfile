@@ -7,6 +7,12 @@ gem 'rails', '3.2.8'
 
 gem 'pg'
 
+# Omniauth
+gem 'omniauth'
+gem 'omniauth-dropbox'
+gem 'omniauth-github'
+gem 'omniauth-google'
+
 # link dropbox gem
 gem 'dropbox-api'
 

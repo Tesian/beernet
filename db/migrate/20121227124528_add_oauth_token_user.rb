@@ -4,17 +4,17 @@ class AddOauthTokenUser < ActiveRecord::Migration
     remove_column :users, :password_google_calendar
     remove_column :users, :username_github
     remove_column :users, :password_github
-    add_column    :users, :github_oauth_token, :string, :default => ""
-    add_column    :users, :dropbox_oauth_token, :string, :default => ""
-    add_column    :users, :dropbox_secret, :string, :default => ""
-    add_column    :users, :gcal_oauth_token, :string, :default => ""
+    add_column    :users, :github, :string, :default => ""
+    add_column    :users, :dropbox, :string, :default => ""
+    add_column    :users, :google, :string, :default => ""
+    add_column    :users, :uid, :string, :default => ""
   end
 
   def down
-    remove_column :users, :github_oauth_token
-    remove_column :users, :dropbox_oauth_token
-    remove_column :users, :dropbox_secret
-    remove_column :users, :gcal_oauth_token
+    remove_column :users, :github
+    remove_column :users, :dropbox
+    remove_column :users, :google
+    remove_column :users, :uid
     add_column    :users, :username_google_calendar, :string
     add_column    :users, :password_google_calendar, :string
     add_column    :users, :username_github, :string
